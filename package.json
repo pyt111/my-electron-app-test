@@ -1,12 +1,13 @@
 {
   "name": "my-electron-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "./out/main/index.js",
+  "description": "测试",
+  "authors": "pyt111",
+  "main": "./dist/main/index.js",
   "build": {
     "appId": "584702675@qq.com",
     "electronDownload": {
-      "mirror": "https://npm.taobao.org/mirrors/electron/"
+      "mirror": "https://npmmirror.com/mirrors/electron/"
     },
     "files": [
       "!node_modules",
@@ -43,18 +44,30 @@
     "dev": "electron-vite dev --inspect --sourcemap",
     "prebuild": "electron-vite build",
     "build:win": "electron-builder -w",
-    "build:win1": "electron-packager ./ myapp --platform=win32 --out=./release-builds --overwrite --ignore=node_modules",
+    "build:win1": "electron-packager . myapp --platform=win32 --out=./release-builds --overwrite --ignore=node_modules --ignore=dist --ignore=electron",
     "build:mac": "electron-builder -m",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package --arch x64 --platform win32",
+    "package2": "electron-forge package --arch x64 --platform win32",
+    "make": "npm run prebuild && electron-forge make",
+    "make:win32": "npm run prebuild && electron-forge package -- --platform win32 && npm run make -- --platform win32"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
     "electron": "^28.1.3",
-    "electron-builder": "^24.9.1",
     "electron-packager": "^17.1.2",
     "electron-vite": "^2.0.0",
-    "electron-winstaller": "^5.2.1"
+    "vite": "^5.0.12"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

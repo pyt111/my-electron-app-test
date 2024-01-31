@@ -6,11 +6,11 @@ const createWindow = () => {
         height: 600
     })
 
-    win.loadFile('out/renderer/index.html')
+    // win.loadFile('dist/renderer/index.html')
+    win.loadURL('https://www.baidu.com')
 }
 
 app.whenReady().then(() => {
-    console.log(' whenReady>--->', );
     createWindow()
 
     app.on('activate', () => {

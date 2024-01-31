@@ -7,6 +7,7 @@ const isProduction = process.env.MODE ==='production'
 export default defineConfig({
     main: {
         build: {
+            outDir: 'dist/main',
             rollupOptions: {
                 input: {
                     index: resolve(__dirname, 'electron/main/index.js')
@@ -22,9 +23,10 @@ export default defineConfig({
         // 根据坏境变量设置 base 路径，解决打包白屏问题
         // base: isProduction ?'./' : '/',
         build: {
+            outDir: 'dist/renderer',
             rollupOptions: {
                 input: {
-                    index: 'index.html'
+                    index: resolve(__dirname, 'index.html')
                 }
             }
         }
